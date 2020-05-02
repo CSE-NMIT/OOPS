@@ -1,5 +1,5 @@
 echo "Code Compile and Test"
-WD="$(PWD)/Assignments/$2/$1"
+WD="$(pwd)/Assignments/$2/$1"
 assignment="Assignments/$2"
 if [$1 -eq "CPP"]
 then
@@ -9,7 +9,7 @@ then
     cat $assignment/input.txt | $WD/main.out > $WD/test.txt
 else
     cd $WD
-    cat ../input.txt | python main.py > test.txt
+    cat ../input.txt | python3 main.py > test.txt
     cd ../..
 fi
 
