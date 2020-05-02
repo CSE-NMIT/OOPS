@@ -15,14 +15,17 @@ def main():
     p = ProcessInput()
     while True:
         #process each line in input
-        inputList = input().strip().split(' ')
-        if inputList[0] == 'ADD':
-            p.processAdd(inputList)
-        if inputList[0] == 'EXPENSE':
-            p.processExpense(inputList)
-        if inputList[0] == 'SHOW':
-            p.processShow(inputList)
-        if inputList[0] == '':
+        try:
+            inputList = input().strip().split(' ')
+            if inputList[0] == 'ADD':
+                p.processAdd(inputList)
+            if inputList[0] == 'EXPENSE':
+                p.processExpense(inputList)
+            if inputList[0] == 'SHOW':
+                p.processShow(inputList)
+            if inputList[0] == '':
+                exit(0)
+        except (EOFError):
             exit(0)
         
 
@@ -86,6 +89,7 @@ class ProcessInput:
 
         if len(self.owes.keys()) == 0:
             print("No balances")
+            return
         if len(inputList) == 1:
             for pair in self.owes:
                 printLine(pair)
