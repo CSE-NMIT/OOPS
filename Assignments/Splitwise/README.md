@@ -117,5 +117,11 @@ User3 owes User1: 1130
 User3 owes User4: 240
 ```
 
-## Your output here (Include Commandline Screenshot)
+## Your output here 
+### Commandline Screenshot
+
+### test.sh output
+```
+# Paste your output here
+```
 
