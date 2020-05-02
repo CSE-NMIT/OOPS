@@ -43,5 +43,5 @@ git push --set-upstream origin <USN>-<username>-<NAME>
 1. Come to the root of the repository (The OOPS directory)
 2. Use the following format
 usage: ./test.sh <CPP/Python> <Name of the Assignment> 
-Example: ./test.sh CPP 
+Example: ./test.sh CPP Splitwise
 ```
