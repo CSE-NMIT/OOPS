@@ -47,4 +47,5 @@ Example: ./test.sh CPP Splitwise
 ```
 
 ## Issues
-Any Issues you face can be created in the Issues tab
+Any Issues you face can be created in the Issues tab.
+However, before creating Issue, please look through the closed issues
