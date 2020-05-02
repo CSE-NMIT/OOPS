@@ -45,3 +45,6 @@ git push --set-upstream origin <USN>-<username>-<NAME>
 usage: ./test.sh <CPP/Python> <Name of the Assignment> 
 Example: ./test.sh CPP Splitwise
 ```
+
+## Issues
+Any Issues you face can be created in the Issues tab
