@@ -1,11 +1,12 @@
 echo "Code Compile and Test"
-WD=$(PWD)/$2/$1
+WD="$(PWD)/Assignments/$2/$1"
+assignment="Assignments/$2"
 if [$1 -eq "CPP"]
 then
     echo "===============compilation================"
     g++ -g $WD/main.cpp -o $WD/main.out
     echo "==================Running=================="
-    cat $2/input.txt | $WD/$2/$1/main.out > $WD/test.txt
+    cat $assignment/input.txt | $WD/main.out > $WD/test.txt
 else
     cd $WD
     cat ../input.txt | python main.py > test.txt
@@ -13,10 +14,20 @@ else
 fi
 
 echo "==================Testing=================="
-diff $WD/test.txt $2/output.txt > $WD/final
-[-s $WD/final] && (echo "fail"; exit 0) || echo "pass"
+diff $WD/test.txt $assignment/output.txt > $WD/final
+if [-f $WD/final]
+then
+    if [-s $WD/final]
+    then
+        echo "fail"; exit 0) 
+    else
+        echo "pass"
+    fi
+else
+    exit 0
+fi
 echo "==================output diff==============="
-cat final
+cat $WD/final
 echo "==================git upload ============="
 git commit -m "Code Updation"
 echo "==================original git diff=================="
