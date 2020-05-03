@@ -37,3 +37,7 @@
 # Python
 */__pycache__/*
 *.pyc
+
+# test.sh output files
+final
+test.txt
