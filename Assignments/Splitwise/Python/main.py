@@ -1,14 +1,3 @@
-'''
-    def show(self):
-        if len(self.owes) > 0:
-            for i in self.owes:
-                print(self.name+" owes "+i+": "+str(self.owes[i]))
-        if len(self.gets) > 0:
-            for i in self.gets:
-                print(i+" owes "+self.name+": "+str(self.gets[i]))
-        if (len(self.gets) == 0) and (len(self.owes) == 0):
-            print("No balances")
-'''
 from user import user
 from typing import List
 def main():
