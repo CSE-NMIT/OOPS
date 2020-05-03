@@ -19,7 +19,7 @@ echo "==================Testing=================="
 diff $WD/test.txt $assignment/output.txt > $WD/final
 if [[ -f "$WD/final" ]]
 then
-    if [[-s "$WD/final" ]]
+    if [[ -s "$WD/final" ]]
     then
         echo "fail"; exit 1
     else
