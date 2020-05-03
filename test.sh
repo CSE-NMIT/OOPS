@@ -3,20 +3,22 @@ set -e
 echo "Code Compile and Test"
 WD="$(pwd)/Assignments/$2/$1"
 assignment="$(pwd)/Assignments/$2"
-if ["$1" -eq "CPP"]
-then
+echo $assignment
+# if ["$1" -eq "CPP"]
+# then
     echo "===============compilation================"
     g++ -g $WD/main.cpp -o $WD/main.out
     echo "==================Running=================="
     cat $assignment/input.txt | $WD/main.out > $WD/test.txt
-else
-    cd $WD
-    cat ../input.txt | python3 main.py > test.txt
-    cd ../..
-fi
+# else
+#     cd $WD
+#     cat ../input.txt | python3 main.py > test.txt
+ #   cd ../..
+#fi
 
 echo "==================Testing=================="
 diff $WD/test.txt $assignment/output.txt > $WD/final
+echo "Crossed"
 if [[ -f "$WD/final" ]]
 then
     if [[ -s "$WD/final" ]]
