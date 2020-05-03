@@ -1,6 +1,6 @@
 echo "Code Compile and Test"
 WD="$(pwd)/Assignments/$2/$1"
-assignment="Assignments/$2"
+assignment="$(pwd)/Assignments/$2"
 if [$1 -eq "CPP"]
 then
     echo "===============compilation================"
@@ -19,7 +19,7 @@ if [-f $WD/final]
 then
     if [-s $WD/final]
     then
-        echo "fail"; exit 0) 
+        echo "fail"; exit 0
     else
         echo "pass"
     fi
