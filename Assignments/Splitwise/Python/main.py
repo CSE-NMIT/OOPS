@@ -27,7 +27,14 @@ def main():
                 exit(0)
         except (EOFError):
             exit(0)
-        
+
+
+def roundNumber(number):
+    if int(number) == number:
+        return int(number)
+    else:
+        return round(number, 2)
+    
 
 class ProcessInput:
     def __init__(self):
@@ -62,7 +69,7 @@ class ProcessInput:
 
 
         if "EQUAL" in inputList:
-            amount = round(amount / num, 2)
+            amount = roundNumber(amount / num)
             for usr in owedBy:
                 updateAmount(owedTo,usr,amount)
 
@@ -74,7 +81,7 @@ class ProcessInput:
 
         if "PERCENT" in inputList:
             amountList = map(int,inputList[5+num:])
-            amountList = map(lambda x: round((x/100)*amount, 2), amountList)
+            amountList = map(lambda x: roundNumber((x/100)*amount), amountList)
             for usr,amt in zip(owedBy, amountList):
                 updateAmount(owedTo, usr, amt)
     
