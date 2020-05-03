@@ -1,7 +1,9 @@
+set -e
+
 echo "Code Compile and Test"
 WD="$(pwd)/Assignments/$2/$1"
 assignment="$(pwd)/Assignments/$2"
-if [$1 -eq "CPP"]
+if ["$1" -eq "CPP"]
 then
     echo "===============compilation================"
     g++ -g $WD/main.cpp -o $WD/main.out
@@ -15,16 +17,16 @@ fi
 
 echo "==================Testing=================="
 diff $WD/test.txt $assignment/output.txt > $WD/final
-if [-f $WD/final]
+if [[ -f "$WD/final" ]]
 then
-    if [-s $WD/final]
+    if [[ -s "$WD/final" ]]
     then
-        echo "fail"; exit 0
+        echo "fail"; exit 1
     else
         echo "pass"
     fi
 else
-    exit 0
+    exit 1
 fi
 echo "==================output diff==============="
 cat $WD/final
