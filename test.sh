@@ -1,6 +1,6 @@
 echo "Code Compile and Test"
-WD="$(PWD)/Assignments/$2/$1"
-assignment="Assignments/$2"
+WD="$(pwd)/Assignments/$2/$1"
+assignment="$(pwd)/Assignments/$2"
 if [$1 -eq "CPP"]
 then
     echo "===============compilation================"
@@ -9,7 +9,7 @@ then
     cat $assignment/input.txt | $WD/main.out > $WD/test.txt
 else
     cd $WD
-    cat ../input.txt | python main.py > test.txt
+    cat ../input.txt | python3 main.py > test.txt
     cd ../..
 fi
 
@@ -19,7 +19,7 @@ if [-f $WD/final]
 then
     if [-s $WD/final]
     then
-        echo "fail"; exit 0) 
+        echo "fail"; exit 0
     else
         echo "pass"
     fi
