@@ -1,3 +1,5 @@
+set -e
+
 echo "Code Compile and Test"
 WD="$(pwd)/Assignments/$2/$1"
 assignment="$(pwd)/Assignments/$2"
@@ -19,12 +21,12 @@ if [[ -f "$WD/final" ]]
 then
     if [[-s "$WD/final" ]]
     then
-        echo "fail"; exit 0
+        echo "fail"; exit 1
     else
         echo "pass"
     fi
 else
-    exit 0
+    exit 1
 fi
 echo "==================output diff==============="
 cat $WD/final
