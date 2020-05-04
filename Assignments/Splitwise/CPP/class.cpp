@@ -1,7 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Users
+class User
+{
+public:
+    int user_id;
+    string name;
+    string email;
+    string mobile_number;
+};
+
+class Users:public User
 {
 public:
     map<string, map<string, float>> users;

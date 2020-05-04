@@ -38,7 +38,7 @@ void Users::getUser(string input)
                     if (this->user_list[i] != this->user_list[j])
                     {
                         if (this->users[this->user_list[i]][this->user_list[j]] != 0)
-                            cout << this->fullname[i] << " owes " << this->fullname[j] << ": " << this->users[this->user_list[i]][this->user_list[j]] << endl;
+                            cout << this->fullname[i] << " owes " << this->fullname[j] << ": " << fixed << setprecision(2) << this->users[this->user_list[i]][this->user_list[j]] << endl;
                     }
                 }
             }
@@ -58,9 +58,9 @@ void Users::getUser(string input)
                     if (this->user_list[i] != input)
                     {
                         if (this->users[input][this->user_list[i]] != 0)
-                            cout << fullname[mark] << " owes " << this->fullname[i] << ": " << this->users[input][this->user_list[i]] << endl;
+                            cout << fullname[mark] << " owes " << this->fullname[i] << ": " << fixed << setprecision(2) << this->users[input][this->user_list[i]] << endl;
                         else if (this->users[this->user_list[i]][input] != 0)
-                            cout << this->fullname[i] << " owes " << fullname[mark] << ": " << this->users[this->user_list[i]][input] << endl;
+                            cout << this->fullname[i] << " owes " << fullname[mark] << ": " << fixed << setprecision(2) << this->users[this->user_list[i]][input] << endl;
                     }
                 }
             }
@@ -72,6 +72,7 @@ void Users::addExpense(vector<string> a, vector<string> receivers)
 {
     this->flag = 1;
     float amount;
+    float sum = 0;
     stringstream geek(a[1]);
     geek >> amount;
     if (a[a.size() - 1] == "EQUAL")
@@ -97,10 +98,13 @@ void Users::addExpense(vector<string> a, vector<string> receivers)
         {
             stringstream change(a[i]);
             change >> temp;
+            sum += temp;
             balance.push_back(temp);
         }
         if (a[a.size() - 1] == "EXACT")
         {
+            if (sum != amount)
+                return;
             for (int i = 0; i < receivers.size(); i++)
             {
                 if (receivers[i] != a[0])
@@ -118,6 +122,8 @@ void Users::addExpense(vector<string> a, vector<string> receivers)
         }
         else if (a[a.size() - 1] == "PERCENT")
         {
+            if (sum != 100)
+                return;
             for (int i = 0; i < receivers.size(); i++)
             {
                 if (receivers[i] != a[0])
