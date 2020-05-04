@@ -1,166 +1,7 @@
 #include <bits/stdc++.h>
+#include "function_definitions.cpp"
+
 using namespace std;
-class Users
-{
-public:
-    map<string, map<string, float>> users;
-    void addUsers(vector<string>);
-    void getUser(string);
-    void getUser();
-    void addExpense(string, string, string, vector<string>);  //for EQUAL
-    void addExpense(string, vector<string>, vector<string>);  //for EXACt
-    void addExpense(string, vector<string>, vector<string>, string);  //for PERCENT
-
-private:
-    int flag = 0; //This marks whether any payment hs been made or not.
-    vector<string> user_list;
-    vector<string> fullname;
-};
-
-void Users::addUsers(vector<string> user)
-{
-    fullname = user;
-    for (int i = 1; i <= user.size(); i++)
-    {
-        string temp = "u";
-        ostringstream oss;
-        oss << i;
-        temp += oss.str();
-        this->user_list.push_back(temp);
-    }
-    for (int i = 0; i < user.size(); i++)
-    {
-        for (int j = 0; j < user.size(); j++)
-        {
-            if (user_list[i] != user_list[j])
-                this->users[user_list[i]].emplace(user_list[j], 0);
-        }
-    }
-}
-void Users::getUser()
-{
-    if (this->flag == 0)
-        cout << "No balances\n";
-    else
-    {
-        for (int i = 0; i < this->user_list.size(); i++)
-        {
-            for (int j = 0; j < this->user_list.size(); j++)
-            {
-                if (this->user_list[i] != this->user_list[j])
-                {
-                    if (this->users[this->user_list[i]][this->user_list[j]] != 0)
-                        cout << this->fullname[i] << " owes " << this->fullname[j] << ": " << this->users[this->user_list[i]][this->user_list[j]] << endl;
-                }
-            }
-        }
-    }
-}
-void Users::getUser(string input)
-{
-    int mark;
-    for (int i = 0; i < user_list.size(); i++)
-    {
-        if (user_list[i] == input)
-        {
-            mark = i;
-            break;
-        }
-    }
-    if (this->flag == 0)
-        cout << "No balances\n";
-    else
-    {
-        for (int i = 0; i < this->user_list.size(); i++)
-        {
-            if (this->user_list[i] != input)
-            {
-                if (this->users[input][this->user_list[i]] != 0)
-                    cout << fullname[mark] << " owes " << this->fullname[i] << ": " << this->users[input][this->user_list[i]] << endl;
-                else if (this->users[this->user_list[i]][input] != 0)
-                    cout << this->fullname[i] << " owes " << fullname[mark] << ": " << this->users[this->user_list[i]][input] << endl;
-            }
-        }
-    }
-}
-void Users::addExpense(string paid_by, string money, string number, vector<string> receivers)
-{
-    this->flag = 1;
-    float amount;
-    int number_of_receivers;
-    stringstream geek(money);
-    stringstream geek1(number);
-    geek >> amount;
-    geek1 >> number_of_receivers;
-    for (int i = 0; i < receivers.size(); i++)
-    {
-        if (receivers[i] != paid_by)
-        {
-            if (this->users[paid_by][receivers[i]] >= amount / number_of_receivers)
-            {
-                this->users[paid_by][receivers[i]] -= amount / number_of_receivers;
-                continue;
-            }
-            this->users[receivers[i]][paid_by] += amount / number_of_receivers;
-        }
-    }
-}
-void Users::addExpense(string paid_by, vector<string> receivers, vector<string> received_amount)
-{
-    this->flag = 1;
-    vector<float> balance;
-    float temp;
-    for (int i = 0; i < received_amount.size(); i++)
-    {
-        stringstream change(received_amount[i]);
-        change >> temp;
-        balance.push_back(temp);
-    }
-    for (int i = 0; i < receivers.size(); i++)
-    {
-        if (receivers[i] != paid_by)
-        {
-            if (this->users[paid_by][receivers[i]] <= balance[i])
-            {
-                balance[i] -= this->users[paid_by][receivers[i]];
-                this->users[paid_by][receivers[i]] = 0;
-                this->users[receivers[i]][paid_by] += balance[i];
-            }
-            else
-                this->users[paid_by][receivers[i]] -= balance[i];
-        }
-    }
-}
-void Users::addExpense(string paid_by, vector<string> receivers, vector<string> received_percent, string money)
-{
-    this->flag = 1;
-    float amount;
-    stringstream geek(money);
-    geek >> amount;
-    vector<float> balance;
-    float temp;
-    for (int i = 0; i < received_percent.size(); i++)
-    {
-        stringstream change(received_percent[i]);
-        change >> temp;
-        balance.push_back(temp);
-    }
-    for (int i = 0; i < receivers.size(); i++)
-    {
-        if (receivers[i] != paid_by)
-        {
-            if (this->users[paid_by][receivers[i]] <= (balance[i] * amount) / 100)
-            {
-                balance[i] = (balance[i] * amount) / 100;
-                balance[i] -= this->users[paid_by][receivers[i]];
-                this->users[paid_by][receivers[i]] = 0;
-                this->users[receivers[i]][paid_by] += balance[i];
-            }
-            else
-                this->users[paid_by][receivers[i]] -= (balance[i] * amount) / 100;
-        }
-    }
-}
 
 int main()
 {
@@ -173,6 +14,8 @@ int main()
         int i = 0;
         while (get_input[i] != ' ' && i != get_input.length())
             initials += get_input[i++];
+
+        
         if (initials == "ADD")
         {
             vector<string> user_list;
@@ -189,10 +32,12 @@ int main()
             }
             user.addUsers(user_list);
         }
+
+
         else if (initials == "SHOW")
         {
             if (get_input.length() == 4)
-                user.getUser();
+                user.getUser("");
             else
             {
                 string str = "";
@@ -202,6 +47,8 @@ int main()
                 user.getUser(str);
             }
         }
+
+
         else if (initials == "EXPENSE")
         {
             i++;
@@ -230,13 +77,20 @@ int main()
                 else
                     user1 += get_input[i++];
             }
+
             string payment_type = "";
             while (get_input[i] != ' ' && i != get_input.length()) //Get payment type
                 payment_type += get_input[i++];
             i++;
+
+            vector<string> argument;
+            argument.push_back(paid_by);
+            argument.push_back(amount);
+
             if (payment_type == "EQUAL")
             {
-                user.addExpense(paid_by, amount, number, receivers);
+                argument.push_back("EQUAL");
+                user.addExpense(argument, receivers);
                 continue;
             }
 
@@ -254,10 +108,21 @@ int main()
                     user1 += get_input[i++];
             }
             received_amount.push_back(user1);
+            vector<string> arg(argument.size() + received_amount.size());
+            vector<string>::iterator it;
+            it = set_union(argument.begin(), argument.end(), received_amount.begin(), received_amount.end(), arg.begin());
+
             if (payment_type == "EXACT")
-                user.addExpense(paid_by, receivers, received_amount);
+            {
+                argument.push_back("EXACT");
+                user.addExpense(arg, receivers);
+            }
+
             else if (payment_type == "PERCENT")
-                user.addExpense(paid_by, receivers, received_amount, amount);
+            {
+                argument.push_back("PERCENT");
+                user.addExpense(arg, receivers);
+            }
         }
     }
     return 0;
