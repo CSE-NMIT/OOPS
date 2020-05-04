@@ -148,8 +148,18 @@ Created card: 5da1583547c78c15a14kj78g
 - ```JSON``` serialization is also required. However, first Get the required output working
 
 ## Hint for C++ People
-1. For ``` JSON ``` serialization, use the concept of Operator overloading wherein you would want to overload the ``` vector/list/map/unordered_map ``` 
+1. For ``` JSON ``` serialization, use the concept of Operator overloading wherein you would want to overload the ``` vector/list/map/unordered_map ``` container classes by inheriting these classes
 container. It is slightly challenging. 
 However, it is a very good learning as to how these classes are implemented.
 **OR**
 2. You can also overload your class as well for easy/pretty printing.
+**OR**
+3. You can publicly inherit these classes. But add a feature of pretty print function such as ```JSONPrint()```. Example for vector.
+``` cpp
+template <typename T>
+string vector::JSONPrint(vector<T> v)
+{
+    // JSON Serialize code goes here
+}
+```
+IMHO, given these choice, my personal preference would be (3). However, I leave upto you. 
