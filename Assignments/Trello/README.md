@@ -162,7 +162,7 @@ However, it is a very good learning as to how these classes are implemented.
 3. You can publicly inherit these classes. But add a feature of pretty print function such as ```JSONify()```. Example for vector.
 ``` cpp
 template <typename T>
-string vector::JSONify()
+string vector<T>::JSONify()
 {
     // JSON Serialize code goes here
 }
