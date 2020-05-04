@@ -7,9 +7,9 @@ public:
     void addUsers(vector<string>);
     void getUser(string);
     void getUser();
-    void addExpense(string, string, string, vector<string>);
-    void addExpense(string, vector<string>, vector<string>);
-    void addExpense(string, vector<string>, vector<string>, string);
+    void addExpense(string, string, string, vector<string>);  //for EQUAL
+    void addExpense(string, vector<string>, vector<string>);  //for EXACt
+    void addExpense(string, vector<string>, vector<string>, string);  //for PERCENT
 
 private:
     int flag = 0; //This marks whether any payment hs been made or not.
