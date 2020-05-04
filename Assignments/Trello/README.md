@@ -162,4 +162,7 @@ string vector::JSONPrint(vector<T> v)
     // JSON Serialize code goes here
 }
 ```
-IMHO, given these choice, my personal preference would be (3). However, I leave upto you. 
+**OR**
+4. You can create helper function for the sake of this App.
+
+IMHO, given these choices, my personal preference would be (3). However, I leave upto you. 
