@@ -120,7 +120,7 @@ User3 owes User4: 240
 ## Your output here 
 ### Commandline Screenshot
 
-![Screenshot](/test-sh.png)
+![ ](test-sh.png)
 
 ### test.sh output
 
