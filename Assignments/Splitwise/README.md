@@ -117,6 +117,25 @@ User3 owes User1: 1130
 User3 owes User4: 240
 ```
 
+## Expectations
+1. Make sure that you have a working and demonstrable code
+2. Make sure that the code is functionally correct
+3. Code should be modular and readable
+4. Separation of concern should be addressed
+5. Please do not write everything in a single file
+6. Code should easily accommodate new requirements and minimal changes
+7. There should be a main method from where the code could be easily testable
+8. [Optional] Write unit tests, if possible
+9. No need to create a GUI
+
+## Optional Requirements
+Please do these only if you’ve time left. You can write your code such that these could be accommodated without changing your code much.
+
+1. A way to add an expense name while adding the expense. Can also add notes, images, etc.
+2. Option to split by share. Ex: ‘User4 pays and everyone splits equally. You pay for 2 people.’ could be added as: ``` u4 1200 4 u1 u2 u3 u4 SHARE 2 1 1 1 ```
+3. A way to show the passbook for a user. The entries should show all the transactions a user was part of. You can print in any format you like.
+4. There can be an option to simplify expenses. When simplify expenses is turned on (is true), the balances should get simplified. Ex: ‘User1 owes 250 to User2 and User2 owes 200 to User3’ should simplify to ‘User1 owes 50 to User2 and 200 to User3’.
+
 ## Your output here 
 ### Commandline Screenshot
 
