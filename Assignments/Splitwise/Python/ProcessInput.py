@@ -1,3 +1,5 @@
+from user import user
+
 class ProcessInput:
     def __init__(self):
         self.users = dict()
@@ -70,10 +72,5 @@ class ProcessInput:
                     printLine(pair)
             if count ==0: print("No balances")
 
-def roundNumber(number):
-    if int(number) == number:
-        return int(number)
-    else:
-        return round(number, 2)
-    
+
 
