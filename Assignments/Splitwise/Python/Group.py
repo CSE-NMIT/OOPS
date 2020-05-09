@@ -56,26 +56,7 @@ class Group:
         expenseType = inputList[4+num]
 
         # Update the transaction 
-        def updateAmount(owedTo, usr, amt) :
-            """
-            Updates the balance of each user in `self.balances` attribute
-
-            Parameters:
-                owedTo (str) : id of the user who bore the expense.
-                usr (str) : id of the user owing money to expense bearer.
-                amt (int) : the amount `usr` owes to expense bearer
-
-            Returns: 
-                None
-            """
-            if owedTo == usr : return
-            if (owedTo,usr) in self.balances:
-                self.balances[(owedTo,usr)] += amt
-            elif (usr,owedTo) in self.balances:
-                self.balances[(usr,owedTo)] -= amt
-            else:
-                self.balances[(owedTo,usr)] = amt
-
+        
         def handleType(expenseType, splitArgs, owedBy) :
             """
             Handles `EXACT` and `PERCENT` expenseTypes because of the `splitArgs`..
@@ -95,14 +76,14 @@ class Group:
             if expenseType == "PERCENT":
                 amountList = map(lambda x: roundNumber((x/100)*amount), splitArgs)
             for usr,amt in zip(owedBy, amountList):
-                updateAmount(expenseBy, usr, amt)
+                self.updateAmount(expenseBy, usr, amt)
                 
             
 
         if "EQUAL" in inputList:
             amount = roundNumber(amount / num)
             for usr in owedBy:
-                updateAmount(expenseBy,usr,amount)
+                self.updateAmount(expenseBy,usr,amount)
 
         #Handle "EXACT" and "PERCENT"
         handleType(expenseType, splitArgs, owedBy)
@@ -113,6 +94,26 @@ class Group:
         # Add expense to each user's passbook
         for user in splitAmong:
             self.addExpenseToUsers(user, expense)
+
+    def updateAmount(self,owedTo, usr, amt) :
+        """
+        Updates the balance of each user in `self.balances` attribute
+        Parameters:
+            owedTo (str) : id of the user who bore the expense.
+            usr (str) : id of the user owing money to expense bearer.
+            amt (int) : the amount `usr` owes to expense bearer
+
+        Returns: 
+            None
+        """
+        if owedTo == usr : return
+        if (owedTo,usr) in self.balances:
+            self.balances[(owedTo,usr)] += amt
+        elif (usr,owedTo) in self.balances:
+            self.balances[(usr,owedTo)] -= amt
+        else:
+            self.balances[(owedTo,usr)] = amt
+
             
     def addExpenseToUsers(self, user, expense):
         """
