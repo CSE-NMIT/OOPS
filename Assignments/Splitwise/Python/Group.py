@@ -33,6 +33,8 @@ class Group:
         splitAmong.append(self.users[expenseBy])
         splitAmong = set(splitAmong)
 
+        expenseType = inputList[4+num]
+
         # Update the transaction 
         def updateAmount(owedTo, usr, amt) :
             if owedTo == usr : return
@@ -43,31 +45,28 @@ class Group:
             else:
                 self.balances[(owedTo,usr)] = amt
 
+        def handleType(expenseType, splitArgs, owedBy) :
+            splitArgs = list(map(int,inputList[5+num:]))
+            amountList = []
+            if expenseType == "EXACT":
+                amountList = splitArgs
+            if expenseType == "PERCENT":
+                amountList = map(lambda x: roundNumber((x/100)*amount), splitArgs)
+            for usr,amt in zip(owedBy, amountList):
+                updateAmount(expenseBy, usr, amt)
+                
+            
 
         if "EQUAL" in inputList:
-            expenseType = "EQUAL"
             amount = roundNumber(amount / num)
             for usr in owedBy:
                 updateAmount(expenseBy,usr,amount)
 
-
-        if "EXACT" in inputList:
-            expenseType = "EXACT"
-            amountList = list(map(int,inputList[5+num:]))
-            splitArgs = amountList
-            for usr,amt in zip(owedBy,amountList):
-                updateAmount(expenseBy, usr, amt)
-
-        if "PERCENT" in inputList:
-            expenseType = "PERCENT"
-            splitArgs = list(map(int,inputList[5+num:]))
-            amountList = map(lambda x: roundNumber((x/100)*amount), splitArgs)
-            for usr,amt in zip(owedBy, amountList):
-                updateAmount(expenseBy, usr, amt)
+        #Handle "EXACT" and "PERCENT"
+        handleType(expenseType, splitArgs, owedBy)
         
         # Create Expense instance
         expense = Expense(self.users[expenseBy], amountToSplit, splitAmong, splitArgs, expenseType)
-
 
         # Add expense to each user's passbook
         for user in splitAmong:
