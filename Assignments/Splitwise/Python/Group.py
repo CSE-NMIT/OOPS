@@ -4,6 +4,15 @@ from Expense import Expense
 
 class Group: 
     def __init__(self, inputList: List[str]): 
+        """
+        Constructor : defines the Group class and adds all the users in the group.
+
+        Parameters:
+            inputList (list(str)) : list of all words from command line
+
+        Returns : 
+            None
+        """
         self.users = {}
         self.balances = {}
         self.expenses = []
@@ -16,6 +25,17 @@ class Group:
             count += 1
 
     def addExpense(self, inputList: List[str]):
+        """
+        Adds the expense from command line. Updates each user's balances.
+        Adds the expense to each participating user's passbook.
+
+        Parameters:
+            inputList (list(str)) : list of all words from command line
+        
+        Returns:
+            None
+
+        """
 
         expenseBy = inputList[1]
         amountToSplit = int(inputList[2])
@@ -37,6 +57,17 @@ class Group:
 
         # Update the transaction 
         def updateAmount(owedTo, usr, amt) :
+            """
+            Updates the balance of each user in `self.balances` attribute
+
+            Parameters:
+                owedTo (str) : id of the user who bore the expense.
+                usr (str) : id of the user owing money to expense bearer.
+                amt (int) : the amount `usr` owes to expense bearer
+
+            Returns: 
+                None
+            """
             if owedTo == usr : return
             if (owedTo,usr) in self.balances:
                 self.balances[(owedTo,usr)] += amt
@@ -46,6 +77,17 @@ class Group:
                 self.balances[(owedTo,usr)] = amt
 
         def handleType(expenseType, splitArgs, owedBy) :
+            """
+            Handles `EXACT` and `PERCENT` expenseTypes because of the `splitArgs`..
+
+            Parameters:
+                expenseType (str) : the type of expense.
+                splitArgs (list(int)) : Arguments to split the amount among users.
+                owedBy (list(str)) : list of user IDs of the users who owe money to expense bearer.
+            
+            Returns:
+                None
+            """
             splitArgs = list(map(int,inputList[5+num:]))
             amountList = []
             if expenseType == "EXACT":
@@ -73,12 +115,40 @@ class Group:
             self.addExpenseToUsers(user, expense)
             
     def addExpenseToUsers(self, user, expense):
+        """
+        Adds expense to user's passbook
+
+        Parameters:
+            user (User): User object
+            expense (Expense): Expense object to be added to user's passbook
+
+        Returns:
+            None
+        """
         user.addExpense(expense)
 
 
     def show(self, inputList: List[str]):
+        """
+        Prints the balances responding to `SHOW` command.
+
+        Parameters:
+            inputList (list(str)): list of all words from command line.
+
+        Returns:
+            None
+        """
     
         def printLine(pair):
+            """
+            Prints specific pair's balance from `self.balances`
+            
+            Paramters:
+                pair (tuple): User pair from `self.balances`
+            
+            Returns:
+                None
+            """
             if self.balances[pair] < 0:
                 print(self.users[pair[0]].name+" owes "+ self.users[pair[1]].name+": "+ str(-(self.balances[pair])))
             if self.balances[pair] > 0:
@@ -101,6 +171,16 @@ class Group:
 
 
 def roundNumber(number):
+    """
+    Rounds the number to 2 decimal places if float. Or just gives the integer number.
+
+    Parameter:
+        number (int) or (float): Number to round
+    
+    Returns:
+        (int) or (float)
+    
+    """
     if int(number) == number:
         return int(number)
     else:

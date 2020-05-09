@@ -8,6 +8,19 @@ class Expense :
             splitAmong, 
             splitArgs, 
             expenseType):
+        """
+        Constructor for Expense class. creates the complete expense instance.
+
+        Parameters:
+            expenseBy (User): User object of the expense bearer.
+            amount (int) or (float): Amount that needs to be split
+            splitAmong (list(User)) : List of user objects of users among whom
+                                      the expense needs to be split
+            expenseType (str): The type of expense (EXACT/EQUAL/PERCENT)
+        
+        Returns:
+            None
+        """
         self.expenseBy = expenseBy
         self.amount = amount
         self.splitAmong = splitAmong
@@ -16,7 +29,15 @@ class Expense :
 
 
     def toString(self):
+        """
+        Converts Expense object to human readable format.
 
+        Parameters:
+            None
+
+        Returns:
+            (str) : Human readable string of Expense object
+        """
         splitAmongString = ""
         
         for user in self.splitAmong:
