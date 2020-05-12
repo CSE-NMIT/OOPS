@@ -139,8 +139,39 @@ Please do these only if you’ve time left. You can write your code such that th
 ## Your output here 
 ### Commandline Screenshot
 
+![ ](test-sh.png)
+
 ### test.sh output
+
+The test.sh execution is not reaching inside the first if statement after creating final file.
+
+
 ```
-# Paste your output here
+avinash@lenovo-budgie:~/Documents/OOPS$ ./test.sh Python Splitwise
+Code Compile and Test
+================PYTHON====================
+==================Testing==================
 ```
 
+out from program - 
+
+```
+No balances
+No balances
+User4 owes User1: 250
+User2 owes User1: 250
+User3 owes User1: 250
+User4 owes User1: 250
+User2 owes User1: 620
+User3 owes User1: 1130
+User4 owes User1: 250
+User2 owes User1: 620
+User3 owes User1: 1130
+User1 owes User4: 230
+User2 owes User1: 620
+User3 owes User1: 1130
+User1 owes User4: 230
+User2 owes User4: 240
+User3 owes User4: 240
+
+```
