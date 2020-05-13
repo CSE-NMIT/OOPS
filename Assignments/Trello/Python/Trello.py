@@ -240,10 +240,58 @@ class Trello:
             if card == None:
                 self.cardNotFound(inputList[1])
                 return
-            card.unassign()
+            card.unassighn()
 
             return
         
+        # Handle MOVE
+
+        if inputList[2] == 'MOVE':
+            card = self.getCardfromCardId(inputList[1])
+
+            if card == None:
+                self.cardNotFound(inputList[1])
+                return
+
+            newListId = inputList[3]
+
+            oldBoardId = inputList[1].split('/')[0]
+            newBoardId = newListId.split('/')[0]
+
+            if not newBoardId == oldBoardId:
+                print('The new listId '+newListId+' is not in the same board as the card.')
+                return
+
+            # getting all data from oldCard 
+            cardInstanceId = card.id.split('/')[2]
+            cardName = card.name
+            cardDescription = card.description
+            cardIsAssigned = card.isAssigned
+            cardAssignedTo = card.assignedTo
+            cardUser = card.user
+
+            # Delete the old card.
+            oldListId = oldBoardId + '/' + inputList[1].split('/')[1]
+            board = self.boards[oldBoardId]
+            oldList = board.getList(oldListId)
+            oldList.deleteCard(card.id)
+
+            try:
+                # Create new card in new list
+                newCardId = newListId+'/'+cardInstanceId
+                
+                newList = board.getList(newListId)
+                newList.createCard(newCardId,cardName)
+                
+                newCard = newList.getCard(newCardId)
+                newCard.updateDescription(cardDescription)
+                if cardIsAssigned:
+                    newCard.assign(cardAssignedTo, cardUser)
+            except:
+                print('newCardId',newCardId)
+                print(newList.cards)
+            
+
 
     def cardNotFound(self,id):
         print('Card '+id+' does not exist')
