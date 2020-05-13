@@ -1,6 +1,13 @@
 import json
 class User:
     def __init__(self, userId, name):
+        """
+        Creates a `User` instance
+        
+        Parameters:
+            userId(str): User ID
+            name(str): User name
+        """
         self.id = userId
         self.name = name
         self.__email = ""
@@ -8,6 +15,14 @@ class User:
         self.cards = []
 
     def getJsonObject(self):
+        """
+        Retrieves a Dictionary object of `User` instance which can be converted to JSON. 
+        
+        Parameters:
+            None
+        Returns:
+            jsonObject (dict): `dict` object of the `User` instance.
+        """
         jsonObject = {
             'id':self.id,
             'name':self.name,
@@ -17,7 +32,12 @@ class User:
 
     def jsonify(self):
         """
-        return JSON format of the current object for representation.
+        Retrieves JSON string of the `User` instance.
+
+        Parameters:
+            None
+        Returns:
+            jsonString (str): JSON string of `User` instance.
         """
         jsonObject = self.getJsonObject()
 

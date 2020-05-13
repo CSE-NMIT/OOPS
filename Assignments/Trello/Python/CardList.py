@@ -5,7 +5,7 @@ from Card import Card
 class CardList:
     def __init__(self,id,name):
         """
-        CardList constructor - creates a CardList instance
+        CardList constructor - creates a `CardList` instance
 
         Parameters:
             id (str): ID of the list
@@ -31,11 +31,30 @@ class CardList:
         self.name = name
 
     def createCard(self,id,name):
+        """
+        Creates `Card` instance in the given `CardList` instance. Stores it in `self.cards` attribute.
+
+        Parameters:
+            id(str): Card ID
+            name(str): Card Name
+        
+        Returns:
+            None
+        """
         card = Card(id,name)
         self.cards[id] = card
         print('Created Card:'+id)
 
     def deleteCard(self,id):
+        """
+        Deletes a `Card` instance from the `CardList` instance.
+        
+        Parameters:
+            id(str): Card ID
+
+        Returns:
+            None
+        """
         if not self.cardExists(id):
             print("Card "+id+" doesn't exist")
             return
@@ -43,6 +62,15 @@ class CardList:
 
 
     def getCard(self,id):
+        """
+        Retrieves `Card` instance from `self.cards` in the `CardList` instance.
+
+        Parameters:
+            id(str): Card ID
+        Returns:
+            card (Card): `Card` instance of the given ID. 
+                         Returns `None` if there is no such instance.
+        """
         if not self.cardExists(id):
             return None
         return self.cards[id]
@@ -64,12 +92,25 @@ class CardList:
 
     def jsonify(self):
         """
-        return JSON format of the current object for representation.
+        Retrieves JSON string of the `CardList` instance.
+
+        Parameters:
+            None
+        Returns:
+            jsonString (str): JSON string of `CardList` instance.
         """
         jsonObject = self.getJsonObject()
         return json.dumps(jsonObject)
 
     def getJsonObject(self):
+        """
+        Retrieves a Dictionary object of `CardList` instance which can be converted to JSON. 
+        
+        Parameters:
+            None
+        Returns:
+            jsonObject (dict): `dict` object of the `CardList` instance.
+        """
         jsonObject = {
             'id': self.id,
             'name': self.name,

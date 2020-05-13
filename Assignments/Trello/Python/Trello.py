@@ -19,6 +19,7 @@ class Trello:
             'user5': User('user5', 'User 5')
         }
 
+        # Define the length of the ID generated from `self.generateId(id)` method
         self.IDLENGTH = 5
     
     def handleBoard(self, inputList):
@@ -294,6 +295,14 @@ class Trello:
 
 
     def cardNotFound(self,id):
+        """
+        Prints alert message if the card is not found.
+
+        Parameters:
+            id(str): Card ID
+        Returns:
+            None
+        """
         print('Card '+id+' does not exist')
 
 
@@ -360,6 +369,14 @@ class Trello:
         print('Created Board: '+id)
 
     def getCardfromCardId(self,id):
+        """
+        Retrieves `Card` instance from given card ID
+        
+        Parameters:
+            id(str): Card ID
+        Returns:
+            card (Card): the `Card` instance of the given ID.
+        """
         boardId, listId, cardId = id.split('/')
         listId = boardId+'/'+listId
         cardId = listId+'/'+cardId
@@ -411,6 +428,14 @@ class Trello:
 
 
     def jsonify(self):
+        """
+        Retrieves JSON string of `Trello` instance.
+
+        Parameters:
+            None
+        Returns:
+            jsonString (str): JSON string of `Trello` instance.
+        """
         jsonObject = [self.boards[board].getJsonObject() for board in self.boards]
 
         return json.dumps(jsonObject)

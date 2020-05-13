@@ -4,6 +4,14 @@ from CardList import CardList
 
 class Board:
     def __init__(self, id, name):
+        """
+        Board constructor. Creates a board instance
+
+        Parameters:
+            id(str) : id of the board
+            name(str) : Board name
+        
+        """
         self.id = id
         self.name = name
         self.privacy = "PUBLIC"
@@ -12,6 +20,16 @@ class Board:
         self.lists = {}
 
     def addMember(self, id, user):
+        """
+        Adds user as a member of the board. Stores in `self.users`
+
+        Parameters:
+            id(str): userId.
+            user(User): user class object of the user.
+
+        Returns:
+            None
+        """
         if self.memberIdExists(id):
             print('Member ' + id + ' already Exists')
             return
@@ -74,22 +92,59 @@ class Board:
 
         
     def createList(self, id, name):
+        """
+        Creates a new `CardList` instance in the `Board`. Stores it in `self.lists` attribute.
+        
+        Parameters:
+            id(str): List id
+            name(str): list name
+        
+        Returns:
+            None
+        """
         cardList = CardList(id,name)
         self.lists[id] = cardList
         print('Created List :' + id)
     
     def deleteList(self,id):
+        """
+        Removes a `CardList` instance from the `Board`.
+        
+        Paramters:
+            id(str): List id
+        
+        Returns:
+            None
+        """
         if not self.listExists(id):
             print("List "+id+" doesn't exist")
             return
         del self.lists[id]
 
     def getList(self,id):
+        """
+        Retrieves the `CardList` instance from `self.lists` of the `Board` instance.
+
+        Parameters:
+            id(str): List id
+
+        Returns:
+            cardList (CardList): `CardList` instance of the given id. 
+                                  Returns None if there is no such list.
+        """
         if not self.listExists(id):
             return None
         return self.lists[id]
     
     def getJsonObject(self):
+        """
+        Retrieves a Dictionary object of `Board` instance which can be converted to JSON. 
+        
+        Parameters:
+            None
+        Returns:
+            jsonObject (dict): `dict` object of the `Board` instance.
+        """
         jsonObject = {
             'id':self.id,
             'name':self.name,
@@ -100,6 +155,14 @@ class Board:
         return jsonObject
 
     def jsonify(self):
+        """
+        Retrieves JSON string of the `Board` instance.
+
+        Parameters:
+            None
+        Returns:
+            jsonString (str): JSON string of `Board` instance.
+        """
         jsonObject = self.getJsonObject()
 
         return json.dumps(jsonObject)
