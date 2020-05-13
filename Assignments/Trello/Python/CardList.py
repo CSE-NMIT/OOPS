@@ -66,9 +66,13 @@ class CardList:
         """
         return JSON format of the current object for representation.
         """
+        jsonObject = self.getJsonObject()
+        return json.dumps(jsonObject)
+
+    def getJsonObject(self):
         jsonObject = {
             'id': self.id,
             'name': self.name,
-            'cards': [self.cards[card].jsonify() for card in self.cards] if self.cards else [""]
+            'cards': [self.cards[card].getJsonObject() for card in self.cards] if self.cards else [""]
         }
-        return json.dumps(jsonObject)
+        return jsonObject

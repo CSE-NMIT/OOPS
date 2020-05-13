@@ -32,10 +32,7 @@ class Card:
         else:
             print('Card '+self.id+' is already unassigned.')
 
-    def jsonify(self):
-        """
-        return JSON format of the current object for representation.
-        """
+    def getJsonObject(self):
         jsonObject = {
             'id': self.id,
             'isAssigned': self.isAssigned,
@@ -43,5 +40,12 @@ class Card:
             'description': self.description,
             'assignedTo': self.assignedTo,
         }
+        return jsonObject
+
+    def jsonify(self):
+        """
+        return JSON format of the current object for representation.
+        """
+        jsonObject = self.getJsonObject()
 
         return json.dumps(jsonObject)

@@ -363,7 +363,7 @@ class Trello:
 
 
     def jsonify(self):
-        jsonObject = [self.boards[board].jsonify() for board in self.boards]
+        jsonObject = [self.boards[board].getJsonObject() for board in self.boards]
 
         return json.dumps(jsonObject)
 

@@ -89,15 +89,18 @@ class Board:
             return None
         return self.lists[id]
     
-
-    def jsonify(self):
+    def getJsonObject(self):
         jsonObject = {
             'id':self.id,
             'name':self.name,
             'privacy':self.privacy,
-            'members': [self.members[user].jsonify() for user in self.members],
-            'lists': [self.lists[lst].jsonify() for lst in self.lists]
+            'members': [self.members[user].getJsonObject() for user in self.members],
+            'lists': [self.lists[lst].getJsonObject() for lst in self.lists]
         }
+        return jsonObject
+
+    def jsonify(self):
+        jsonObject = self.getJsonObject()
 
         return json.dumps(jsonObject)
 
