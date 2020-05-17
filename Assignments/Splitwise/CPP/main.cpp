@@ -2,6 +2,6 @@
 #include<stdio.h>
 int main()
 {
-    printf("hello friends Chai peelo");
+    printf("TESTING");
     return 1;
 }
