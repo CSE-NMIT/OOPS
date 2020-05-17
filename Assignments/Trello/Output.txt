@@ -1,0 +1,23 @@
+No boards
+Created board: 5da1583ec25d2a7e246b0375
+{"id": "5da1583ec25d2a7e246b0375", "name": "work@tech", "privacy": "PUBLIC"}
+[{"id": "5da1583ec25d2a7e246b0375", "name": "work@tech", "privacy": "PUBLIC"}]
+{"id": "5da1583ec25d2a7e246b0375", "name": "nmit.cse", "privacy": "PRIVATE"}
+Created board: 5da1586caaaad00d9b2d7aa6
+[{"id": "5da1583ec25d2a7e246b0375", "name": "nmit.cse", "privacy": "PRIVATE"}, {"id": "5da1586caaaad00d9b2d7aa6", "name": "workat", "privacy": "PUBLIC"}]
+{"id": "5da1583ec25d2a7e246b0375", "name": "nmit.cse", "privacy": "PRIVATE", "members": [{"id": "user1", "name": "Gaurav Chandak", "email": "gaurav@nmit.cse"}, {"id": "user3", "name": "Sagar Jain", "email": "sagar@nmit.cse"}]}
+Board 5da1586caaaad00d9b2d7aa6 does not exist
+[{"id": "5da1583ec25d2a7e246b0375", "name": "nmit.cse", "privacy": "PRIVATE", "members": [{"id": "user1", "name": "Gaurav Chandak", "email": "gaurav@nmit.cse"}, {"id": "user3", "name": "Sagar Jain", "email": "sagar@nmit.cse"}]}]
+Created list: 5da1583547c78c15a1408df2
+{"id": "5da1583547c78c15a1408df2", "name": "Mock Interviews"}
+{"id": "5da1583547c78c15a1408df2", "name": "Mock Interviews - Applied"}
+Created list: 5da1583547c78c15a143hj34
+{"id": "5da1583ec25d2a7e246b0375", "name": "nmit.cse", "privacy": "PRIVATE", "lists"": [{"id": "5da1583547c78c15a1408df2", "name": "Mock Interviews - Applied"}, {"id": "5da1583547c78c15a143hj34", "name": "Mock Interviews - Scheduled"}] "members": [{"id": "user1", "name": "Gaurav Chandak", "email": "gaurav@nmit.cse"}, {"id": "user3", "name": "Sagar Jain", "email": "sagar@nmit.cse"}]}
+Created card: 5da1583547c78c15a14kjsd8
+Created card: 5da1583547c78c15a14kj78g
+{"id": "5da1583547c78c15a1408df2", "name": "Mock Interviews - Applied", "cards": [{"id": "5da1583547c78c15a14kjsd8", "name": "abcd@gmail.com"}, {"id": "5da1583547c78c15a14kj78g", "name": "abcda@gmail.com"}]}
+{"id": "5da1583547c78c15a1408df2", "name": "Mock Interviews - Applied", "cards": [{"id": "5da1583547c78c15a14kjsd8", "name": "abcd@gmail.com"}, {"id": "5da1583547c78c15a14kj78g", "name": "abcde@gmail.com", "description": "At 7PM"}]}
+{"id": "5da1583547c78c15a14kjsd8", "name": "abcd@gmail.com", "assignedTo": "gaurav@nmit.cse"}
+{"id": "5da1583547c78c15a1408df2", "name": "Mock Interviews - Applied", "cards": [{"id": "5da1583547c78c15a14kj78g", "name": "abcde@gmail.com", "description": "At 7PM"}]}
+{"id": "5da1583547c78c15a143hj34", "name": "Mock Interviews - Scheduled", "cards": [{"id": "5da1583547c78c15a14kjsd8", "name": "abcd@gmail.com", "assignedTo": "gaurav@nmit.cse"}]}
+{"id": "5da1583547c78c15a14kjsd8", "name": "abcd@gmail.com"}
