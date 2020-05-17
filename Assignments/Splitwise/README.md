@@ -70,7 +70,7 @@ User3 owes User4: 240 (0+240)
 1. All inputs will be taken from STDIN. You will follow the same ** CODING RULES ** as followed in Hackerrank or other platforms
 2. There will be 3 types of input:
 
-1. New Users Addion: ``` ADD <no-of-users> <space-separated-list-of-user-names>```. The ID will be incremental in the form of ``` u1, u2, u3, u4... ```
+1. New Users Addition: ``` ADD <no-of-users> <space-separated-list-of-user-names>```. The ID will be incremental in the form of ``` u1, u2, u3, u4... ```
 2. Expense in the format: ``` EXPENSE <user-id-of-person-who-paid> <no-of-users> <space-separated-list-of-user-ids> <EQUAL/EXACT/PERCENT> <space-separated-values-in-case-of-non-equal> ```
 3. Show balances for all: ``` SHOW ```
 4. Show balances for a single user: ``` SHOW <user-id> ```
