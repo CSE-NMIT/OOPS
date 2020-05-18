@@ -1,26 +1,29 @@
 
+class User :
+    user_id_genrator = 1
+    def __init__(self,name):
+        self.name =name
+        self.email = name + "@gmail.com"
+        self.userID = User.user_id_genrator
+        User.user_id_genrator +=1
+
 class cards :
     def __init__(self,name) :
         self.name =name
 
 
-class lists :
-    def __init__(self,name):
+class lists(cards) :
+    def __init__(self,name,name_card):
+        super().__init__(name)
         self.name =name
     
 
-class User :
-    user_id_genrator = 1
-    def __init__(self,name,userID):
-        self.name =name
-        self.email = name + "@gmail.com"
-        self.userID = user_id_genrator
-        user_id_genrator +=1
 
 
-class Board :
+
+class Board(lists) :
     
-    def __init__(self,name):
+    def __init__(self,name,id):
         self.name = name
         self.id = id
 
