@@ -1,36 +1,9 @@
 #from Assignments.Trello.Python.aditya.all_clsses import Board , User , lists , cards
-
-
+from jsonEncoder import BoardEncoder , listEncoder , cardEncoder 
+from Globaldict import User_dict , board_dict , card_dict , list_dict
+from basicClasses import User , cards
 
 import json
-
-
-class User :
-    def __init__(self,name,userID):
-        self.name =name
-        self.email = name + "@gmail.com"
-        self.userID = userID
-    
-    def toJSON(self) :
-        temp = {'id' : self.userID , 'name' : self.name  , 'email':self.email}
-        return json.dumps(temp)
-        
-class cards :
-    def __init__(self,name,cardID) :
-        self.name =name
-        self.cardID = cardID
-        self.assigned = "UNASSIGN"
-        self.assignedto = ""
-        self.description = ""
-    def Assign_card(self,emailID) :
-        self.assignedto = emailID
-    
-    def toJSON(self) :
-        temp = {'id' : self.cardID , 'name' : self.name  , 'assignedto' : self.assignedto , 'description' : self.description}
-        temp = {k: v for k, v in temp.items() if v != ""  }
-        return json.dumps(temp)
-    
-
 
 
 
@@ -39,7 +12,7 @@ class cards :
 
 class lists :
     def __init__(self,name,listID):
-        #super().__init__(name)
+      
         self.name =name
         self.listID = listID
         self.cards_members = {}
@@ -56,16 +29,12 @@ class lists :
             else :
                 self.cards_members[cardID].description = new_value
     
+    def getData(self) :
+        
 
+        temp = {'id' : self.listID , 'name' : self.name }
+        return {k:v for k, v in temp.items() if v != [] and v != {}  }
 
-    def toJSON(self) :
-        temp2=[]
-        for x in self.cards_members.values() :
-            temp2.append(x.toJSON())
-
-        temp = {'id' : self.listID , 'name' : self.name , 'cards' : temp2}
-        temp = {k:v for k, v in temp.items() if v != [] and v != {}  }
-        return json.dumps(temp)
 
 
 
@@ -99,16 +68,7 @@ class Board :
         self.lists_members[listID].name  = new_name
         
     
-    def toJSON(self) :
-        temp2 = []
-        temp3 = []
-        for x in self.lists_members.values() :
-            temp2.append(x.toJSON())
-        for x in self.members.values() :
-            temp3.append(x.toJSON())
-        temp = {'id':self.id,'name':self.name,'privacy':self.privacy,'lists':temp2,'users': temp3}
-        temp = {k: v for k, v in temp.items() if v != [] and v != {}  }
-        return json.dumps(temp)
+
 
     
     
@@ -221,7 +181,7 @@ def dosomething_show(parse_me):
             return
         JsonEverything = []
         for boards in board_dict.values() :
-            JsonEverything.append(boards.toJSON())
+            JsonEverything.append(json.dumps(boards,cls=BoardEncoder))
         print(JsonEverything)
 
     if "BOARD" in parse_me :
@@ -232,23 +192,21 @@ def dosomething_show(parse_me):
             print("Board {} does not exist".format(parse_me[-1]))
             return
         else :
-            print(board_dict[parse_me[-1]].toJSON())
+            print(json.dumps( board_dict[parse_me[-1]],cls=BoardEncoder))
 
     elif "LIST" in parse_me :
         board_id = list_dict[parse_me[-1]]
-        print(board_dict[board_id].lists_members[parse_me[-1]].toJSON())
+        print(json.dumps(board_dict[board_id].lists_members[parse_me[-1]].getData()))
         
     elif "CARD" in parse_me :
         list_id,board_id = card_dict[parse_me[-1]]
-        board_dict[board_id].lists_members[list_id].cards_members[parse_me[-1]].toJSON()
+        print( json.dumps(board_dict[board_id].lists_members[list_id].cards_members[parse_me[-1]],cls=cardEncoder ))
 
         
-card_dict ={}
-list_dict ={}
-board_dict ={}
 
 
-User_dict = {"user1":User('user1','abc@gmail.com'),"user2":User('user2','ramesh@gmail.com'),"user3":User('user3','gopal@gmail.com')}
+
+
 
 id_genrator =100
 list_id_genrator  = 10
